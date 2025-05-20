@@ -6,10 +6,12 @@ import { User } from '../domain/User';
 import { UserId } from '../domain/UserId';
 import { UserName } from '../domain/UserName';
 import { UserEmail } from '../domain/UserEmail';
+import { UserPassword } from '../domain/UserPassword';
+import { UserPhone } from '../domain/UserPhone';
+import { UserRole } from '../domain/UserRole';
 import { UserCreatedAt } from '../domain/UserCreatedAt';
-import { UserNotFoundError } from '../domain/UserNotFoundError';
 
-export class UserRepository implements IntUserRepository {
+export class UserPostgresRepository implements IntUserRepository {
   constructor(
     @InjectRepository(UserEntity)
     private readonly userRepository: Repository<UserEntity>,
@@ -17,9 +19,12 @@ export class UserRepository implements IntUserRepository {
 
   private mapToDomain(user: UserEntity): User {
     return new User(
-      new UserId(user.id),
+      user.id,
       new UserName(user.name),
       new UserEmail(user.email),
+      new UserPassword(user.password),
+      new UserPhone(user.phone),
+      new UserRole(user.role),
       new UserCreatedAt(user.createdAt),
     );
   }
@@ -33,25 +38,29 @@ export class UserRepository implements IntUserRepository {
     const user = await this.userRepository.findOne({ where: { id: id.value } });
 
     if (!user) {
-      throw new UserNotFoundError('El usuario no existe');
+      return null;
     }
     return this.mapToDomain(user);
   }
 
   async create(user: User): Promise<void> {
     await this.userRepository.save({
-      id: user.id.value,
       name: user.name.value,
       email: user.email.value,
       createdAt: user.createdAt.value,
+      password: user.password.value,
+      phone: user.phone.value,
+      role: user.role.value,
     });
   }
 
-  async edit(user: User): Promise<void> {
-    await this.userRepository.update(user.id.value, {
-      id: user.id.value,
+  async edit(id: number, user: User): Promise<void> {
+    await this.userRepository.update(id, {
       name: user.name.value,
       email: user.email.value,
+      password: user.password.value,
+      phone: user.phone.value,
+      role: user.role.value,
       createdAt: user.createdAt.value,
     });
   }

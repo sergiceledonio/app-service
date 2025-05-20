@@ -1,14 +1,14 @@
 export class UserId {
-  value: string;
+  value: number;
 
-  constructor(value: string) {
+  constructor(value: number) {
     this.value = value;
     this.ensureIsValid();
   }
 
   private ensureIsValid() {
-    if (this.value.length < 5) {
-      throw new Error('UserId must be at least 5 characters long');
+    if (isNaN(this.value)) {
+      throw new Error('UserId must be a number');
     }
   }
 }

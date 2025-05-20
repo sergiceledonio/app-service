@@ -3,13 +3,32 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 @Entity('users')
 export class UserEntity {
   @PrimaryGeneratedColumn()
-  id: string;
+  id: number;
 
   @Column()
   name: string;
 
   @Column()
   email: string;
+
+  @Column()
+  password: string;
+
+  @Column()
+  phone: string;
+
+  @Column()
+  role: string;
+
+  // @Column()
+  // artistic_name: string;
+
+  // @Column('jsonb')
+  // availability: {
+  //   days: number[];
+  //   month: number;
+  //   year: number;
+  // };
 
   @Column()
   createdAt: Date;

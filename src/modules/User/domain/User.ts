@@ -1,24 +1,35 @@
 import { UserCreatedAt } from './UserCreatedAt';
 import { UserEmail } from './UserEmail';
-import { UserId } from './UserId';
 import { UserName } from './UserName';
+import { UserPassword } from './UserPassword';
+import { UserPhone } from './UserPhone';
+import { UserRole } from './UserRole';
 
 export class User {
-  id: UserId;
+  id: number;
   name: UserName;
   email: UserEmail;
+  password: UserPassword;
+  phone: UserPhone;
+  role: UserRole;
   createdAt: UserCreatedAt;
 
   constructor(
-    id: UserId,
+    id: number | null,
     name: UserName,
     email: UserEmail,
+    password: UserPassword,
+    phone: UserPhone,
+    role: UserRole,
     createdAt: UserCreatedAt,
   ) {
     this.id = id;
     this.name = name;
     this.email = email;
     this.createdAt = createdAt;
+    this.password = password;
+    this.phone = phone;
+    this.role = role;
   }
 
   public nameAndEmail() {
@@ -27,9 +38,12 @@ export class User {
 
   public toPlaneObject() {
     return {
-      id: this.id.value,
+      id: this.id,
       name: this.name.value,
       email: this.email.value,
+      password: this.password.value,
+      phone: this.phone.value,
+      role: this.role.value,
       createdAt: this.createdAt.value,
     };
   }
