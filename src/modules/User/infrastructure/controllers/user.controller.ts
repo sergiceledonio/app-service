@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { Inject } from '@nestjs/common';
 import { UserGetAll } from '../../application/use-cases/UserGetAll';
-import { UserGetOneById } from '../../application/UserGetOneById/UserGetOneById';
+import { UserGetOneById } from '../../application/use-cases/UserGetOneById';
 import { UserCreate } from '../../application/use-cases/UserCreate';
 import { UserEdit } from '../../application/use-cases/UserEdit';
 import { UserDelete } from '../../application/use-cases/UserDelete';

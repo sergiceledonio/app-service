@@ -1,7 +1,7 @@
-import { User } from '../../domain/User';
-import { UserId } from '../../domain/UserId';
+import { User } from '../../domain/models/User';
+import { UserId } from '../../domain/value-objects/UserId';
 import { UserNotFoundError } from '../../domain/errors/UserNotFoundError';
-import { IntUserRepository } from '../../domain/IntUserRepository';
+import { IntUserRepository } from '../../domain/ports/IntUserRepository';
 
 export class UserGetOneById {
   constructor(private repository: IntUserRepository) {}

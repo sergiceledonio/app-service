@@ -1,5 +1,5 @@
-import { User } from './User';
-import { UserId } from './UserId';
+import { User } from '../models/User';
+import { UserId } from '../value-objects/UserId';
 
 export interface IntUserRepository {
   create(user: User): Promise<void>;

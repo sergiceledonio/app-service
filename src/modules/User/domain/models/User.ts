@@ -1,9 +1,9 @@
-import { UserCreatedAt } from './UserCreatedAt';
-import { UserEmail } from './UserEmail';
-import { UserName } from './UserName';
-import { UserPassword } from './UserPassword';
-import { UserPhone } from './UserPhone';
-import { UserRole } from './UserRole';
+import { UserCreatedAt } from '../value-objects/UserCreatedAt';
+import { UserEmail } from '../value-objects/UserEmail';
+import { UserName } from '../value-objects/UserName';
+import { UserPassword } from '../value-objects/UserPassword';
+import { UserPhone } from '../value-objects/UserPhone';
+import { UserRole } from '../value-objects/UserRole';
 
 export class User {
   id: number;

@@ -1,5 +1,5 @@
-import { User } from '../../domain/User';
-import { IntUserRepository } from '../../domain/IntUserRepository';
+import { User } from '../../domain/models/User';
+import { IntUserRepository } from '../../domain/ports/IntUserRepository';
 
 export class UserGetAll {
   constructor(private repository: IntUserRepository) {}

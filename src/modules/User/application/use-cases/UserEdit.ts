@@ -1,11 +1,11 @@
-import { User } from '../../domain/User';
-import { UserCreatedAt } from '../../domain/UserCreatedAt';
-import { UserEmail } from '../../domain/UserEmail';
-import { UserName } from '../../domain/UserName';
-import { IntUserRepository } from '../../domain/IntUserRepository';
-import { UserPassword } from '../../domain/UserPassword';
-import { UserPhone } from '../../domain/UserPhone';
-import { UserRole } from '../../domain/UserRole';
+import { User } from '../../domain/models/User';
+import { UserCreatedAt } from '../../domain/value-objects/UserCreatedAt';
+import { UserEmail } from '../../domain/value-objects/UserEmail';
+import { UserName } from '../../domain/value-objects/UserName';
+import { IntUserRepository } from '../../domain/ports/IntUserRepository';
+import { UserPassword } from '../../domain/value-objects/UserPassword';
+import { UserPhone } from '../../domain/value-objects/UserPhone';
+import { UserRole } from '../../domain/value-objects/UserRole';
 import { SaveUserDto } from '../dtos/Validations';
 
 export class UserEdit {

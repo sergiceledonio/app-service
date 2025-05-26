@@ -1,15 +1,15 @@
 import { Repository } from 'typeorm';
-import { IntUserRepository } from '../domain/IntUserRepository';
+import { IntUserRepository } from '../domain/ports/IntUserRepository';
 import { InjectRepository } from '@nestjs/typeorm';
-import { UserEntity } from './UserEntity';
-import { User } from '../domain/User';
-import { UserId } from '../domain/UserId';
-import { UserName } from '../domain/UserName';
-import { UserEmail } from '../domain/UserEmail';
-import { UserPassword } from '../domain/UserPassword';
-import { UserPhone } from '../domain/UserPhone';
-import { UserRole } from '../domain/UserRole';
-import { UserCreatedAt } from '../domain/UserCreatedAt';
+import { UserEntity } from '../domain/entities/UserEntity';
+import { User } from '../domain/models/User';
+import { UserId } from '../domain/value-objects/UserId';
+import { UserName } from '../domain/value-objects/UserName';
+import { UserEmail } from '../domain/value-objects/UserEmail';
+import { UserPassword } from '../domain/value-objects/UserPassword';
+import { UserPhone } from '../domain/value-objects/UserPhone';
+import { UserRole } from '../domain/value-objects/UserRole';
+import { UserCreatedAt } from '../domain/value-objects/UserCreatedAt';
 
 export class UserPostgresRepository implements IntUserRepository {
   constructor(
