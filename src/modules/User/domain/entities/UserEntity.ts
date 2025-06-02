@@ -1,4 +1,11 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToMany,
+  CreateDateColumn,
+} from 'typeorm';
+import { EventEntity } from 'src/modules/Event/domain/entities/EventEntity';
 
 @Entity('users')
 export class UserEntity {
@@ -8,7 +15,10 @@ export class UserEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
+  artistic_name?: string;
+
+  @Column({ unique: true })
   email: string;
 
   @Column()
@@ -20,16 +30,19 @@ export class UserEntity {
   @Column()
   role: string;
 
-  // @Column()
-  // artistic_name: string;
+  @Column({ nullable: true })
+  location?: string;
 
-  // @Column('jsonb')
-  // availability: {
-  //   days: number[];
-  //   month: number;
-  //   year: number;
-  // };
+  @OneToMany(() => EventEntity, (event) => event.user)
+  events: EventEntity[];
 
-  @Column()
+  @Column('jsonb', { nullable: true })
+  availability?: {
+    days: number[];
+    month: number;
+    year: number;
+  };
+
+  @CreateDateColumn()
   createdAt: Date;
 }

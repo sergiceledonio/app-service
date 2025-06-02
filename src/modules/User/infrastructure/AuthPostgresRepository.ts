@@ -17,8 +17,14 @@ export class AuthPostgresRepository implements IntAuthRepository {
   }
 
   async register(data: RegisterDto) {
-    const user = await this.userRepository.save(data);
-    console.log(user);
-    return user;
+    const userExists = !!(await this.userRepository.findOne({
+      where: { email: data.email },
+    }));
+
+    if (userExists) {
+      return null;
+    }
+
+    return await this.userRepository.save(data);
   }
 }

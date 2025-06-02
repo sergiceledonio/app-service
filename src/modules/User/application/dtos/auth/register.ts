@@ -4,6 +4,9 @@ export class RegisterDto {
   @IsString()
   name: string;
 
+  @IsString()
+  artistic_name: string;
+
   @IsEmail()
   email: string;
 
@@ -12,6 +15,9 @@ export class RegisterDto {
 
   @IsString()
   phone: string;
+
+  @IsString()
+  location: string;
 
   @IsString()
   role: string;

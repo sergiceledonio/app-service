@@ -9,7 +9,9 @@ import { UserEmail } from '../domain/value-objects/UserEmail';
 import { UserPassword } from '../domain/value-objects/UserPassword';
 import { UserPhone } from '../domain/value-objects/UserPhone';
 import { UserRole } from '../domain/value-objects/UserRole';
-import { UserCreatedAt } from '../domain/value-objects/UserCreatedAt';
+import { UserArtisticName } from '../domain/value-objects/UserArtisticName';
+import { UserLocation } from '../domain/value-objects/UserLocation';
+import { UserAvailability } from '../domain/value-objects/UserAvailability';
 
 export class UserPostgresRepository implements IntUserRepository {
   constructor(
@@ -21,11 +23,13 @@ export class UserPostgresRepository implements IntUserRepository {
     return new User(
       user.id,
       new UserName(user.name),
+      new UserArtisticName(user.artistic_name),
       new UserEmail(user.email),
       new UserPassword(user.password),
       new UserPhone(user.phone),
       new UserRole(user.role),
-      new UserCreatedAt(user.createdAt),
+      new UserLocation(user.location),
+      new UserAvailability(user.availability),
     );
   }
 
@@ -46,22 +50,26 @@ export class UserPostgresRepository implements IntUserRepository {
   async create(user: User): Promise<void> {
     await this.userRepository.save({
       name: user.name.value,
+      artistic_name: user.artistic_name.value,
       email: user.email.value,
-      createdAt: user.createdAt.value,
       password: user.password.value,
       phone: user.phone.value,
       role: user.role.value,
+      location: user.location.value,
+      availability: user.availability.value,
     });
   }
 
   async edit(id: number, user: User): Promise<void> {
     await this.userRepository.update(id, {
       name: user.name.value,
+      artistic_name: user.artistic_name.value,
       email: user.email.value,
       password: user.password.value,
       phone: user.phone.value,
       role: user.role.value,
-      createdAt: user.createdAt.value,
+      location: user.location.value,
+      availability: user.availability.value,
     });
   }
 

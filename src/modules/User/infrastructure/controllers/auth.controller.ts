@@ -36,7 +36,6 @@ export class AuthController {
   @Post('/register')
   async register(@Body() registerDto: RegisterDto) {
     try {
-      console.log(registerDto);
       return this.RegisterUseCase.run(registerDto);
     } catch (error) {
       if (error instanceof UserNotFoundError) {
