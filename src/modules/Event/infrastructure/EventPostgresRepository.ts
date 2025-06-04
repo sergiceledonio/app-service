@@ -61,6 +61,14 @@ export class EventPostgresRepository implements IntEventRepository {
     return events.map((event) => this.mapToDomain(event));
   }
 
+  async getAllByUserId(userId: number): Promise<Event[]> {
+    const events = await this.eventRepository.find({
+      where: { user: { id: userId } },
+      relations: ['user'],
+    });
+    return events.map((event) => this.mapToDomain(event));
+  }
+
   async getOneById(id: EventId): Promise<Event | null> {
     const event = await this.eventRepository.findOne({
       where: { id: id.value },

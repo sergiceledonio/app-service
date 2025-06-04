@@ -8,6 +8,7 @@ import { EventGetOneById } from './application/use-cases/EventGetOneById';
 import { EventCreate } from './application/use-cases/EventCreate';
 import { EventEdit } from './application/use-cases/EventEdit';
 import { EventDelete } from './application/use-cases/EventDelete';
+import { EventGetAllByUserId } from './application/use-cases/EventGetAllByUserId';
 import { UserPostgresRepository } from '../User/infrastructure/UserPostgresRepository';
 import { UserEntity } from '../User/domain/entities/UserEntity';
 
@@ -54,6 +55,14 @@ import { UserEntity } from '../User/domain/entities/UserEntity';
       useFactory: (eventRepository: EventPostgresRepository) =>
         new EventDelete(eventRepository),
       inject: ['eventRepository'],
+    },
+    {
+      provide: 'eventGetAllByUserId',
+      useFactory: (
+        eventRepository: EventPostgresRepository,
+        userRepository: UserPostgresRepository,
+      ) => new EventGetAllByUserId(eventRepository, userRepository),
+      inject: ['eventRepository', 'userRepository'],
     },
   ],
 })

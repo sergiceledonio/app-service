@@ -14,6 +14,7 @@ import { EventGetOneById } from '../../application/use-cases/EventGetOneById';
 import { EventCreate } from '../../application/use-cases/EventCreate';
 import { EventEdit } from '../../application/use-cases/EventEdit';
 import { EventDelete } from '../../application/use-cases/EventDelete';
+import { EventGetAllByUserId } from '../../application/use-cases/EventGetAllByUserId';
 import { EventNotFoundError } from '../../domain/errors/EventNotFoundError';
 import {
   FindOneParams,
@@ -33,6 +34,8 @@ export class EventController {
     private readonly eventEdit: EventEdit,
     @Inject('eventDelete')
     private readonly eventDelete: EventDelete,
+    @Inject('eventGetAllByUserId')
+    private readonly eventGetAllByUserId: EventGetAllByUserId,
   ) {}
 
   @Get()
@@ -55,6 +58,20 @@ export class EventController {
         return new HttpException(error.message, HttpStatus.NOT_FOUND);
       }
       throw error;
+    }
+  }
+
+  @Post('/get-events-by-user')
+  async getEventsByUserId(@Body() query: FindOneParams) {
+    try {
+      return (await this.eventGetAllByUserId.run(query.id)).map((event) =>
+        event.toPlaneObject(),
+      );
+    } catch (error) {
+      if (error.message === 'User not found') {
+        return new HttpException(error.message, HttpStatus.NOT_FOUND);
+      }
+      throw new HttpException(error.message, HttpStatus.INTERNAL_SERVER_ERROR);
     }
   }
 
