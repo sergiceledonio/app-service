@@ -7,10 +7,10 @@ export class EventType {
   }
 
   private ensureIsValid() {
-    const validTypes = ['wedding', 'birthday', 'corporate', 'other'];
+    const validTypes = ['residencia', 'discoteca', 'evento', 'otro'];
     if (!validTypes.includes(this.value.toLowerCase())) {
       throw new Error(
-        'EventType must be one of: wedding, birthday, corporate, other',
+        'EventType must be one of: residencia, discoteca, evento, otro',
       );
     }
   }

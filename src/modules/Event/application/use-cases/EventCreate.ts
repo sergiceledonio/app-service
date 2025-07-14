@@ -21,6 +21,7 @@ export class EventCreate {
   ) {}
 
   async run(body: SaveEventDto): Promise<void> {
+    console.log(body);
     const user = await this.userRepository.getOneById(new UserId(body.userId));
     if (!user) throw new Error('User not found');
 

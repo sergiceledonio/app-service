@@ -32,7 +32,7 @@ export class SaveEventDto {
   @IsNumber()
   price: number;
 
-  @IsEnum(['wedding', 'birthday', 'corporate', 'other'])
+  @IsEnum(['residencia', 'discoteca', 'evento', 'otro'])
   type: string;
 
   @IsString()
